@@ -16,8 +16,13 @@ public class GamblingSimulation {
 	
 	public static void gamePlay() {
 		Random random = new Random();
-		for(int i = 1; i <= 20; i++) {
-			System.out.println("Day: " +i);
+		int[] winAmount = new int[20];
+		int[] looseAmount = new int[20];	
+	
+		int wonDays = 0;
+		int lostDays = 0;
+		for(int i = 0; i < 20; i++) {
+			System.out.println("Day: " +(i+1));
 			int winStack = 0;
 			int looseStack = 0;
 			while(true) {
@@ -31,18 +36,25 @@ public class GamblingSimulation {
 				}
 				
 				if(looseStack == STAKE_PER_DAY / 2) {
+					lostDays++;
 					break;
 				}
 				if(winStack == STAKE_PER_DAY / 2) {
+					wonDays++;
 					break;
 				}
 				
 			}
-			System.out.println("Winnig Stack: " +winStack);
-			System.out.println("Loosing Stack: " +looseStack);	
-			System.out.println("------------------------");
+			looseAmount[i] = looseStack;
+			winAmount[i] = winStack;
+//			System.out.println("Winnig Stack: " +winStack);
+//			System.out.println("Loosing Stack: " +looseStack);	
+			System.out.println("Loose Amount: " +looseAmount[i]);
+			System.out.println("Win Amount: " +winAmount[i]);
+			System.out.println("------------------------");	
 		}
-		
+		System.out.println("Total Days Lost: " +lostDays);
+		System.out.println("Total Days Won: " +wonDays);
 	}
 	
 	
