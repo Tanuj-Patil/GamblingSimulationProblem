@@ -22,21 +22,32 @@ public class GamblingSimulation {
 	
 	public static void gamePlay() {
 		Random random = new Random();
-		int playStatus = random.nextInt(9) % 2;
-		System.out.println("Play Status: " +playStatus);
-		if(playStatus == LOOSE) {
-			looseStack += 1;
-		} else {
-			winStack += 1;			
+		
+		while(true) {
+			gameStatus();
+			int playStatus = random.nextInt(9) % 2;
+			System.out.println("Play Status: " +playStatus);
+			if(playStatus == LOOSE) {
+				looseStack += 1;
+			} else {
+				winStack += 1;			
+			}
+			
+			if(looseStack == STAKE_PER_DAY / 2) {
+				break;
+			}
+			if(winStack == STAKE_PER_DAY / 2) {
+				break;
+			}
+			
 		}
+		
 	}
 	
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to Gambling Simulation Problem developed by Tanuj Patil");
-		gameStatus();
 		gamePlay();
-		gameStatus();
 	}
 
 }
